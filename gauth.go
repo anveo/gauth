@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 	"log"
 	"math/big"
-	"os/user"
+	"os"
 	"path"
 	"strings"
 	"syscall"
@@ -70,11 +70,7 @@ func authCodeOrDie(sec string, ts int64) string {
 }
 
 func main() {
-	user, e := user.Current()
-	if e != nil {
-		log.Fatal(e)
-	}
-	cfgPath := path.Join(user.HomeDir, ".config/gauth.csv")
+	cfgPath := path.Join(os.Getenv("HOME"), ".config/gauth.csv")
 
 	cfgContent, e := ioutil.ReadFile(cfgPath)
 	if e != nil {
