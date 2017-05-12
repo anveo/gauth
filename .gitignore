@@ -25,5 +25,8 @@ _testmain.go
 *.test
 *.prof
 
-# gauth
+# Glide
+glide.lock
+
+###gauth###
 bin/

@@ -1,0 +1,3 @@
+package: gauth
+import:
+- package: golang.org/x/crypto/ssh/terminal

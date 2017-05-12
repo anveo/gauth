@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/pcarrier/gauth.png?branch=master)](https://travis-ci.org/pcarrier/gauth)
+[![Build Status](https://travis-ci.org/DailyHotel/gauth.svg?branch=master)](https://travis-ci.org/DailyHotel/gauth)
+[![](https://images.microbadger.com/badges/image/dailyhotel/golang-glide.svg)](https://microbadger.com/images/dailyhotel/golang-glide "Get your own image badge on microbadger.com")
 
 gauth: replace Google Authenticator
 ===================================
@@ -8,26 +9,20 @@ gauth: replace Google Authenticator
 Installation
 ------------
 
-With a Go environment already set up, it should be as easy as `go get github.com/tuxmartin/gauth`.
-
-*Eg,* with `GOPATH=$HOME/go`, it will create a binary `$HOME/go/bin/gauth`.
+With Docker already set up, it should be as easy as `docker run dailyhotel/gauth`.
 
 Usage
 -----
 
 - In web interfaces, pretend you can't read QR codes, get a secret like `hret 3ij7 kaj4 2jzg` instead.
-- Store one secret per line in `~/.config/gauth.csv`, in the format `name:secret`. For example:
+- Store one secret per line in `gauth.csv`, in the format `name:secret`. For example:
 
         AWS:   ABCDEFGHIJKLMNOPQRSTUVWXYZ234567ABCDEFGHIJKLMNOPQRSTUVWXYZ234567
         Airbnb:abcd efgh ijkl mnop
         Google:a2b3c4d5e6f7g8h9
         Github:234567qrstuvwxyz
 
-- Restrict access to your user:
-
-        $ chmod 600 ~/.config/gauth.csv
-
-- Run `gauth`. The progress bar indicates how far the next change is.
+- Run `docker run -v "${PWD}/config:/root/.config" dailyhotel/gauth`. The progress bar indicates how far the next change is.
 
         $ gauth
                    prev   curr   next
@@ -39,7 +34,7 @@ Usage
 
 - `gauth` is convenient to use in `watch`.
 
-        $ watch -n1 gauth
+        $ watch --color -n1 -- docker run dailyhotel/gauth
 
 - Remember to keep your system clock synchronized and to **lock your computer when brewing your tea!**
 
@@ -68,6 +63,7 @@ Compatibility
 Tested with:
 
 - Airbnb
+- Akamai
 - Apple
 - AWS
 - DreamHost
@@ -76,6 +72,7 @@ Tested with:
 - Facebook
 - Gandi
 - Github
+- GoDaddy
 - Google
 - LastPass
 - Linode
